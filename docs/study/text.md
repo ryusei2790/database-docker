@@ -241,6 +241,27 @@ INNER JOIN public.profiles p ON u.id = p.id;
 | bob@example.com | bob | Bob Johnson |
 | carol@example.com | carol | Carol Williams |
 
+### 5-2-1. JOINはテーブルをくっつけるわけではない
+
+> **「テーブル自体を変えているの？」という疑問について**
+
+JOINはテーブル自体を変更しません。`SELECT`を実行したその瞬間だけ、仮想的に結合した結果を作って返しています。
+
+```
+auth.users    ←── 元のまま変化なし
+public.profiles ←── 元のまま変化なし
+
+SELECT実行
+    ↓
+結合した結果（一時的な仮想テーブル）を画面に表示
+    ↓
+表示が終わったら消える（どこにも保存されない）
+```
+
+Excelで例えると、2枚のシートのデータをコピペして新しいシートを作るのではなく、「この2枚を並べて見せてね」という**表示命令だけ**を出しているイメージです。
+
+> データを永続的に保存したい場合は `CREATE VIEW` や `CREATE TABLE AS SELECT ...` を使いますが、それは応用的な話です。
+
 ### 5-3. JOINの種類
 
 | 種類 | 意味 |
