@@ -183,6 +183,16 @@ INSERT 0 3
 | `docker compose logs db` | ログを確認（エラー調査に使う） |
 | `docker compose exec db psql -U postgres -d postgres` | DB に接続 |
 
+### `docker compose exec db psql -U postgres -d postgres` の引数の意味
+
+```
+docker compose exec  → 起動中のコンテナの中でコマンドを実行する
+  db                 → docker-compose.yml で定義したサービス名（コンテナの名前）
+  psql               → PostgreSQL のコマンドラインクライアント
+  -U postgres        → -U はユーザー指定。postgres ユーザーで接続する（.env の POSTGRES_USER）
+  -d postgres        → -d はデータベース指定。postgres データベースに接続する（.env の POSTGRES_DB）
+```
+
 ---
 
 ## スキーマを変更したいとき
